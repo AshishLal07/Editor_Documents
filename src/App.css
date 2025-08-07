@@ -1,0 +1,305 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+}
+
+/* Editor specific styles */
+.page-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.page-content:focus {
+  outline: none;
+}
+
+.page-content p {
+  margin: 1em 0;
+}
+
+.page-content p:first-child {
+  margin-top: 0;
+}
+
+.page-content p:last-child {
+  margin-bottom: 0;
+}
+
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  margin: 1.5em 0 0.5em 0;
+  font-weight: bold;
+}
+
+.page-content h1 {
+  font-size: 2em;
+}
+
+.page-content h2 {
+  font-size: 1.5em;
+}
+
+.page-content h3 {
+  font-size: 1.25em;
+}
+
+.page-content ul,
+.page-content ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.page-content ul {
+  list-style-type: disc;
+}
+
+.page-content ol {
+  list-style-type: decimal;
+}
+
+.page-content li {
+  margin: 0.25em 0;
+}
+
+.page-content blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-style: italic;
+}
+
+.page-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.page-content table th,
+.page-content table td {
+  border: 1px solid #d1d5db;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.page-content table th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+.page-content strong {
+  font-weight: bold;
+}
+
+.page-content em {
+  font-style: italic;
+}
+
+.page-content u {
+  text-decoration: underline;
+}
+
+.page-content a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.page-content a:hover {
+  color: #1d4ed8;
+}
+
+/* Page break styling */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* Print specific styles */
+@media print {
+  .page-content {
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Avoid breaking inside paragraphs */
+  .page-content p {
+    page-break-inside: avoid;
+  }
+
+  /* Avoid page breaks after headings */
+  .page-content h1,
+  .page-content h2,
+  .page-content h3,
+  .page-content h4,
+  .page-content h5,
+  .page-content h6 {
+    page-break-after: avoid;
+  }
+
+  /* Avoid orphaned lines */
+  .page-content p {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+/* Selection styling */
+.page-content::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.page-content ::-moz-selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Custom scrollbar for editor area */
+.editor-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.editor-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Placeholder styling for empty contenteditable */
+.page-content:empty::before {
+  content: "Start typing your document...";
+  color: #9ca3af;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Focus ring for accessibility */
+.page-content:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Line numbers (optional feature) */
+.line-numbers {
+  counter-reset: line-number;
+}
+
+.line-numbers .line {
+  counter-increment: line-number;
+}
+
+.line-numbers .line::before {
+  content: counter(line-number);
+  position: absolute;
+  left: -2em;
+  width: 1.5em;
+  text-align: right;
+  color: #9ca3af;
+  font-size: 0.875em;
+  user-select: none;
+}
+
+/* Spell check styling */
+.page-content [data-spellcheck="false"] {
+  text-decoration: none !important;
+}
+
+/* Drag and drop styling */
+.page-content.drag-over {
+  background-color: #eff6ff;
+  border: 2px dashed #3b82f6;
+}
+
+/* Error states */
+.editor-error {
+  border: 2px solid #ef4444;
+  background-color: #fef2f2;
+}
+
+/* Loading states */
+.editor-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.editor-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3b82f6;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 0.75rem !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .page-content {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+
+  .page-content blockquote {
+    background-color: #374151;
+    border-left-color: #6b7280;
+  }
+
+  .page-content table th {
+    background-color: #374151;
+  }
+
+  .page-content table th,
+  .page-content table td {
+    border-color: #6b7280;
+  }
+}
